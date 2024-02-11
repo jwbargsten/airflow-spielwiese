@@ -38,6 +38,7 @@ airflow = [
     "apache-airflow-providers-apache-spark",
     "apache-airflow-providers-cncf-kubernetes",
     "apache-airflow",
+    "Flask-Session==0.5.0",
 ]
 dev = [
     "ruff",
