@@ -58,7 +58,6 @@ build = [
 ]
 
 [tool.setuptools_scm]
-write_to = "src/data_ingest"
-search_parent_directories = true
+# write_to = "src/data_ingest/_version.py"
 
 # [project.scripts]
