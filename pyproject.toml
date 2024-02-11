@@ -1,0 +1,64 @@
+[tool.pytest.ini_options]
+pythonpath = ["src", "tests"]
+norecursedirs = [
+    "tests/kit"
+]
+
+[tool.ruff]
+line-length=111
+
+[build-system]
+requires = ["setuptools", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.coverage.paths]
+source = ["src"]
+
+[project]
+name = "airflow-data-ingestion"
+dynamic = ["version"]
+description = "example airflow setup"
+authors = [
+    { name = "Joachim Bargsten", email = "jw@bargsten.org" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "requests",
+    "pyyaml",
+    "more-itertools",
+    "kubernetes",
+    "boto3",
+    "msgspec",
+]
+license = { text = "Proprietary" }
+
+[project.optional-dependencies]
+airflow = [
+    "apache-airflow-providers-apache-spark",
+    "apache-airflow-providers-cncf-kubernetes",
+    "apache-airflow",
+]
+dev = [
+    "ruff",
+    "pytest>=7",
+    "setuptools_scm",
+    "pytest-env",
+    "pytest-mock",
+    "requests-mock",
+    "types-PyYAML",
+    "types-requests",
+    "airflow-data-ingestion[airflow]"
+]
+build = [
+    "build",
+    "twine",
+    "tomli",
+    "setuptools_scm"
+]
+
+[tool.setuptools_scm]
+write_to = "src/data_ingest"
+search_parent_directories = true
+
+# [project.scripts]
