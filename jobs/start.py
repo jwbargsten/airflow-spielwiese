@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# :snippet start-script
 
 import importlib
 import logging
@@ -9,16 +10,16 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    # the first argument is <modulename>:<functionname>
-    (prog, jobname, *rest) = sys.argv
-    sys.argv = [prog, *rest]
-    (mod_name, fn_name) = jobname.split(":", maxsplit=1)
+    (prog, jobname, *rest) = sys.argv                       # (1)
+    sys.argv = [prog, *rest]                                # (2)
+    (mod_name, fn_name) = jobname.split(":", maxsplit=1)    # (3)
     logger.info(f"Starting job {jobname}")
-    mod = importlib.import_module(mod_name)
-    fn = getattr(mod, fn_name)
-    fn()
+    mod = importlib.import_module(mod_name)                 # (4)
+    fn = getattr(mod, fn_name)                              # (5)
+    fn()                                                    # (6)
 
 
+# :cloak
 def _get_log_level():
     loglevel = os.environ.get("LOG_LEVEL", "INFO")
     numeric_level = getattr(logging, loglevel.upper(), None)
@@ -37,6 +38,8 @@ def _init_logging_system():
     logger.debug("logging system initiated")
 
 
+# :endcloak
 if __name__ == "__main__":
     _init_logging_system()
     main()
+# :endsnippet
